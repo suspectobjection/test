@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Angelthon</title>
+  <style>
+    :root {
+      --bg: #0a0a0d;
+      --fg: #e8e8ea;
+      --muted: #a9a9b2;
+      --red: #ff2a4a;
+      --red-2: #ff5a7a;
+      --red-3: #ff0033;
+      --glass: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+    /* Animated background */
+    .bg::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background:
+        radial-gradient(50% 60% at 20% 30%, rgba(255, 0, 51, 0.35), transparent 60%),
+        radial-gradient(40% 52% at 80% 20%, rgba(255, 50, 100, 0.25), transparent 60%),
+        radial-gradient(60% 50% at 50% 80%, rgba(255, 80, 120, 0.22), transparent 60%);
+      filter: blur(60px);
+      animation: flow 22s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+    @keyframes flow {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(-4%,2%) scale(1.05); }
+      100% { transform: translate(4%,-2%) scale(1.1); }
+    }
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,13,0.65);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 16px 20px; }
+    h1 { margin: 0; font-size: 1.6rem; }
+    nav a { color: var(--fg); margin-left: 20px; text-decoration: none; font-weight: 600; }
+    nav a:hover { color: var(--red); }
+    .title { font-size: 3rem; margin: 0 0 12px; text-shadow: 0 0 12px rgba(255,42,74,0.25); }
+    .em { color: var(--red); }
+    .desc { color: var(--muted); max-width: 65ch; }
+    .btn {
+      padding: 12px 18px; border-radius: 12px; border: none;
+      cursor: pointer; font-weight: 600;
+      background: linear-gradient(180deg, var(--red), var(--red-3));
+      color: #fff; box-shadow: 0 12px 28px rgba(255,42,74,0.45);
+      transition: transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .cards {
+      display: grid; gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 20px;
+    }
+    .card {
+      border-radius: 16px; padding: 18px;
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(16px); box-shadow: var(--shadow);
+      transition: transform .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card h3 { margin: 0 0 8px; color: var(--red); }
+    .card p { margin: 0; color: var(--muted); }
+    footer {
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      background: rgba(10,10,13,0.65);
+      padding: 24px 20px;
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <header>
+    <div class="wrap">
+      <h1>Angelthon</h1>
+      <nav>
+        <a href="#store">Store</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="wrap">
+    <h2 class="title">Angelthon — <span class="em">эксперимент</span></h2>
+    <p class="desc">Красно‑черный неон, переливы, блюры и анимации. Чисто по приколу, как портал‑чит.</p>
+    <button class="btn">Начать</button>
+  </section>
+
+  <section class="wrap cards">
+    <div class="card"><h3>Переливы</h3><p>Градиенты движутся как дыхание.</p></div>
+    <div class="card"><h3>Блюры</h3><p>Стеклянные панели дают глубину.</p></div>
+    <div class="card"><h3>Неон</h3><p>Красные акценты светятся.</p></div>
+    <div class="card"><h3>Легкость</h3><p>Чистый CSS/JS без библиотек.</p></div>
+  </section>
+
+  <!-- Store Section -->
+  <section id="store" class="wrap">
+    <h2 class="title">Angelthon Store</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Продукт #1</h3>
+        <p>Описание продукта: экспериментальный айтем.</p>
+        <button class="btn">Купить</button>
+      </div>
+      <div class="card">
+        <h3>Продукт #2</h3>
+        <p>Описание продукта: красно‑черный аксессуар.</p>
+        <button class="btn">Купить</button>
+      </div>
+      <div class="card">
+        <h3>Продукт #3</h3>
+        <p>Описание продукта: чисто по приколу.</p>
+        <button class="btn">Купить</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © Angelthon — экспериментальный проект, без продаж. GitHub Pages ready.
+  </footer>
+
+  <script>
+    // Плавный скролл по якорям
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href'))
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
